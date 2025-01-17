@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz pour Louise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #6c63ff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        #quiz {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #6c63ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #5548c8;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Un quiz spécial pour toi, Louise</h1>
+        <p>Réponds aux questions et accumule 10 points pour découvrir une surprise !</p>
+    </header>
+    <section id="quiz">
+        <div class="question" id="question-container">
+            <p>Question 1 : Quelle est ma couleur préférée ?</p>
+            <button onclick="checkAnswer(1, 'bleu')">Bleu</button>
+            <button onclick="checkAnswer(1, 'rouge')">Rouge</button>
+            <button onclick="checkAnswer(1, 'vert')">Vert</button>
+        </div>
+        <div id="result"></div>
+    </section>
+    <script>
+        const answers = {
+            1: 'bleu',
+            2: 'chat',
+            3: 'paris',
+            4: 'pizza',
+            5: 'voyage'
+        };
+        
+        let currentQuestion = 1;
+        let score = 0;
+
+        function checkAnswer(question, selectedAnswer) {
+            if (answers[question] === selectedAnswer) {
+                score += 2;
+            }
+
+            if (currentQuestion === 1) {
+                document.getElementById('question-container').innerHTML = `
+                    <p>Question 2 : Quel est mon animal préféré ?</p>
+                    <button onclick="checkAnswer(2, 'chien')">Chien</button>
+                    <button onclick="checkAnswer(2, 'chat')">Chat</button>
+                    <button onclick="checkAnswer(2, 'oiseau')">Oiseau</button>
+                `;
+            } else if (currentQuestion === 2) {
+                document.getElementById('question-container').innerHTML = `
+                    <p>Question 3 : Quelle est ma ville préférée ?</p>
+                    <button onclick="checkAnswer(3, 'londres')">Londres</button>
+                    <button onclick="checkAnswer(3, 'paris')">Paris</button>
+                    <button onclick="checkAnswer(3, 'tokyo')">Tokyo</button>
+                `;
+            } else if (currentQuestion === 3) {
+                document.getElementById('question-container').innerHTML = `
+                    <p>Question 4 : Quel est mon plat préféré ?</p>
+                    <button onclick="checkAnswer(4, 'pasta')">Pasta</button>
+                    <button onclick="checkAnswer(4, 'pizza')">Pizza</button>
+                    <button onclick="checkAnswer(4, 'sushi')">Sushi</button>
+                `;
+            } else if (currentQuestion === 4) {
+                document.getElementById('question-container').innerHTML = `
+                    <p>Question 5 : Quelle est mon activité favorite ?</p>
+                    <button onclick="checkAnswer(5, 'lecture')">Lecture</button>
+                    <button onclick="checkAnswer(5, 'voyage')">Voyage</button>
+                    <button onclick="checkAnswer(5, 'cinéma')">Cinéma</button>
+                `;
+            } else if (currentQuestion === 5) {
+                showResult();
+            }
+
+            currentQuestion++;
+        }
+
+        function showResult() {
+            if (score >= 10) {
+                document.getElementById('quiz').innerHTML = `
+                    <p>Félicitations, Louise ! Tu as accumulé ${score} points !</p>
+                    <p>Et voici ma surprise pour toi : <strong>Je t'aime, Louise ❤️</strong></p>
+                `;
+            } else {
+                document.getElementById('quiz').innerHTML = `
+                    <p>Tu as accumulé ${score} points. Essaie à nouveau pour atteindre 10 points et découvrir ma surprise !</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
+<--stars.infy.uk
